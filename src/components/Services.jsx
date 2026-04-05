@@ -71,7 +71,7 @@ const Services = () => {
           {services.map((svc, i) => (
             <motion.div
               key={svc.count}
-              initial={{ opacity: 0, y: 24 }}
+              // initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{
@@ -99,24 +99,32 @@ const Services = () => {
                   <SplitText
                     text={svc.title}
                     type="words"
-                    duration={0.6}
-                    stagger={0.06}
+                    duration={0.9}
+                    stagger={0.09}
                   />
                 </h3>
 
-                <p className="text-gray-600 font-normal text-sm md:text-base leading-relaxed mb-8">
+                <motion.p 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  className="text-gray-600 font-normal text-sm md:text-base leading-relaxed mb-8"
+                >
                   {svc.desc}
-                </p>
+                </motion.p>
 
                 <ul className="space-y-4 mb-4">
                   {svc.items.map((item, idx) => (
-                    <li
+                    <motion.li
                       key={idx}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + idx * 0.1, duration: 0.4 }}
                       className="flex items-center gap-3 text-sm text-gray-600 font-medium"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-black transition-colors duration-300" />
                       {item}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </div>

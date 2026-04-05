@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import SplitText from "./SplitText";
 import backgroundImage from "../assets/bg-image.jpeg";
@@ -17,15 +17,27 @@ const fadeUp = (delay = 0) => ({
 });
 
 const Hero = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax effect: slower scroll for background
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0vh", "30vh"]);
+
   return (
-    <section className="relative h-svh min-h-[580px] flex flex-col overflow-hidden">
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
+    <section ref={ref} className="relative h-svh min-h-[580px] flex flex-col overflow-hidden">
+      <motion.div
+        className="absolute -top-[30vh] -bottom-[30vh] left-0 right-0 z-0 bg-cover bg-center"
+        style={{ 
+          backgroundImage: `url(${backgroundImage})`,
+          y: backgroundY
+        }}
       >
         <div className="absolute inset-0 bg-black/35" />
         <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/20 to-black/105" />
-      </div>
+      </motion.div>
 
       <main
         className="relative z-10 grow flex flex-col justify-center

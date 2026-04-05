@@ -69,8 +69,28 @@ const Showcase = () => {
   }, [isMobile]);
 
   return (
-    <section className="bg-[#f5f5f7] w-full" id="showcase">
+    <section className="bg-[#f5f5f7] w-full pt-20 md:pt-32 pb-10" id="showcase">
       <div className="max-w-7xl mx-auto px-5 md:px-12">
+        {/* ── Header ── */}
+        <div className="mb-12 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="block text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-3">
+              Our Showcase
+            </span>
+            <h2 className="font-poppins font-bold text-4xl sm:text-5xl lg:text-[4.5rem] leading-[1.05] tracking-tight text-black max-w-2xl">
+              <span className="block">Unmatched</span>
+              <span className="block text-gray-400">Quality.</span>
+            </h2>
+          </div>
+
+          <div className="md:max-w-sm">
+            <p className="text-sm md:text-base font-light leading-relaxed text-gray-600">
+              Discover how our state-of-the-art printing technologies bring your
+              most ambitious ideas to life with stunning clarity.
+            </p>
+          </div>
+        </div>
+
         {/* ── MOBILE LAYOUT ── */}
         {isMobile && (
           <div className="flex flex-col relative z-0">
@@ -186,13 +206,13 @@ const Showcase = () => {
                       }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      {!isCurrent && (
+                      {/* {!isCurrent && (
                         <motion.div
                           className="absolute inset-0 bg-gray-100/80 z-10 pointer-events-none"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                         />
-                      )}
+                      )} */}
                       <img
                         src={item.img}
                         alt={item.title}
